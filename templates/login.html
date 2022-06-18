@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>login</title>
+{% endblock %}
+{% block content %}
+<div class="container" style="padding:50px;">
+
+    <form class="bshadow" style="width:500px; margin:0 auto;" method="post">
+        {% csrf_token %}
+        <center><h6>Login</h6></center>
+        <label>E-mail:</label><input type="email" class="form-control" placeholder="email" name="email"><br>
+        <label>Password:</label><input type="password" class="form-control" placeholder="password" name="password"><br>
+        {% if error %}Invalid details {% endif %}
+        <input type="submit" class="btn btn-primary" value="submit">
+        <a href="{% url 'register' %}">Sign up</a>
+    </form>
+</div>
+{% endblock %}

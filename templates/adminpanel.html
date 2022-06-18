@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Admin panel</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid ">
+    <div class="row">
+        <div class="card col-md-2" style="margin:5px;">
+             <div class="link"><a class="book"  href="{% url 'add_book' %}" >Add New Book</a></div>
+            <center><h6>Add New category</h6></center>
+             {{error}}
+             <form method="post" action="{% url 'add_cat' %}" style="">
+                 {% csrf_token %}
+                 <input class="form-control" name="name" placeholder="Name of new category">
+                 <input class="btn btn-success" type="submit">
+
+             </form>
+        </div>
+
+
+        <div class="col-md-6">
+            <div >
+                <center><h5>categories</h5></center>
+                {% for i in cat %}
+                    <div class="card row" style="margin:5px;">
+                        <h6>{{i.name}}</h6>
+                        <a href="{% url 'cat_edit' i.id %}" style="width:200px;margin:5px;" class="btn btn-success">edit</a>
+                        <a href="{% url 'cat_delete' i.id %}" style="width:200px;margin:5px;" class="btn btn-warning">delete</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Registration</title>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form class="bshadow " method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control" placeholder="username" name="username"><br>
+        {% if error == 'username' %}<p style="color:red">Username already exists</p>{% endif %}<br>
+        <input type="text" class="form-control" placeholder="first name" name="first_name"><br>
+        <input type="text" class="form-control" placeholder="second name" name="last_name"><br>
+        <label><input type="radio" value="M" name="gender">Male</label>
+        <label><input type="radio"  value="F" name="gender">Female</label>
+        <input type="email" class="form-control" placeholder="email" name="email"><br>
+        {% if error == 'email' %}<p style="color:red">Email already exists</p>{% endif %}<br>
+        <input type="password" class="form-control" placeholder="password" name="password1"><br>
+        <input type="password" class="form-control" placeholder="Retype password" name="password2"><br>
+        {% if error == 'pswd' %}<p style="color:red">passwords doest match </p>{% endif %}<br>
+        {% if error == 'keyerror' %}<p style="color:red">You need to fill all the fields </p>{% endif %}<br>
+        <input type="submit" class="btn btn-primary" value="submit">
+    </form>
+</div>
+{% endblock %}

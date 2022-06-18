@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Details</title>
+{% endblock %}
+{% block content %}
+    <div>
+        <img src="{{obj.img.url}}" alt="image">
+        <h6>{{obj.name}}</h6>
+        <p>Added date:{{obj.date}}</p>
+        <p>category:{{obj.categ.name}}</p>
+        <p>Author:{{obj.author}}</p>
+        <p>Description:{{obj.desc}}</p>
+
+    </div>
+{% endblock %}

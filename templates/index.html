@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Library</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="row" style="height:100%;">
+    <div class="col-md-2" style="height:100%;">
+        <div class="bg-dark categ">
+            <h6 class="cat_itm">Categories</h6>
+            <div class="cat_itm">
+                <a href="{% url 'home' %}" >all</a>
+            </div>
+            {% for i in categ %}
+            <div class="cat_itm">
+                <a href="{% url 'categ' i.slug %}">{{i.name}}</a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+    <div class="col-md-10 row" style="padding:15px;">
+
+            {% for i in books %}
+            <div class="bshadow" style="width:160px; height:300px; border:1px solid black; margin:10px;">
+                <a class="book" href="{{i.get_url}}">
+                    <img style="width:130px; height:130px; margin-Top:10px;" src="{{i.img.url}}" alt="image">
+                    <h6>{{i.name}}</h6>
+                    <p>Author:{{i.author}}<br>
+                    {{i.desc|truncatewords:3}}</p>
+
+                </a>
+                {% if user.is_superuser %}
+                <div class="row">
+                    <a style="width:50px; margin:2px;" href="{% url 'bk_edit' i.id %}" class="btn btn-warning">edit</a>
+                    <a style="width:70px; margin:2px;" href="{% url 'bk_delete' i.id %}" class="btn btn-danger">delete</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

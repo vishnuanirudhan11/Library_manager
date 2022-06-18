@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Add new item</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="bshadow" style="border-radius:20px;">
+            {{error}}
+            <form method="post" action="{% url 'add_book' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="align">name:<input type="text" class="form-control" name="name" placeholder="name"></label><br>
+                <label class="align">description:<textarea name="desc" class="form-control" placeholder="description"></textarea></label><br>
+                <label class="align">Author name:<input type="text" name="author" class="form-control" placeholder="author"></label><br>
+                <div class="dropdown"><br>
+                    <label>Categories:</label>
+                  <select class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" name="categ" aria-expanded="false">
+                      {% for i in cat %}
+                        <option value="{{i.slug}}" name="categ" >{{i.name}}</option>
+                      {% endfor %}
+                  </select>
+                </div><br>
+                <label>Book cover Image:<input type="file" name="img"></label><br>
+                <input type="submit" value="submit">
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
